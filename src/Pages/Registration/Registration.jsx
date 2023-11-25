@@ -45,7 +45,7 @@ const Registration = () => {
         createUser(email, password)
             .then(() => {
 
-                fetch('/users', {
+                fetch('http://localhost:5000/users', {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"
@@ -76,7 +76,6 @@ const Registration = () => {
 
     return (
         <div className="hero min-h-screen">
-
             <div className="hero-content flex-col ">
                 <h1 className="text-5xl title">Create Account</h1>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
