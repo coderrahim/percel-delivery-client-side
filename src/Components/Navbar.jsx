@@ -1,7 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from '../assets/logo.png'
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Navbar = () => {
+    const { user, LogOut } = useContext(AuthContext)
+
     const navMenu = <>
         <li>
             <NavLink to='/'>Home</NavLink>
@@ -38,7 +42,43 @@ const Navbar = () => {
                     <span className="badge badge-xs badge-primary indicator-item"></span>
                 </div>
 
-                <a className="btn">Button</a>
+                {
+                    user ?
+                        <div className="flex items-center justify-center gap-5">
+
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex={0} className="btn btn-ghost shadow-xl btn-circle avatar">
+                                    <div className="w-12 rounded-full">
+                                        {/* {
+                                                user.photoURL ?
+                                                    <img src={user.photoURL} />
+                                                    :
+                                                    <img src={dbuser[0]?.photo_url} />
+                                            } */}
+                                    </div>
+                                </label>
+                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box text-right border">
+                                    {/* {
+                                            user?.displayName ?
+                                            <li className="text-md text-center font-medium">{user?.displayName} </li>
+                                            :
+                                            <li className="text-md text-center font-medium">{dbuser[0]?.name} </li>
+                                        } */}
+                                    <button className="btn btn-primary btn-sm my-3">
+                                        <Link to='/dashboard'>Dashboard</Link>
+                                    </button>
+
+                                    <button onClick={LogOut} className="btn btn-primary btn-sm md:btn-md">Logout
+                                    </button>
+
+                                </ul>
+                            </div>
+                        </div>
+                        :
+                        <Link to='/login'>
+                            <button className="btn btn-outline btn-primary btn-sm md:btn-md">Login</button>
+                        </Link>
+                }
             </div>
         </div>
     );
