@@ -17,9 +17,9 @@ const MyPercel = () => {
                 setBooking(data)
             })
     }, [url])
+    // const totalPrice = 
 
     const handleDelete = id => {
-        console.log("delete",id)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -29,7 +29,6 @@ const MyPercel = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
-            console.log(id)
             if (result.isConfirmed) {
                 fetch(`http://localhost:5000/booking/${id}`, {
                     method: "DELETE",
@@ -63,9 +62,9 @@ const MyPercel = () => {
                     <thead>
                         <tr>
                             <th>Parcel Type</th>
-                            <th>Requested Delivery Date</th>
-                            <th>Delivery Date</th>
                             <th>Booking Date</th>
+                            <th>Delivery Date</th>
+                            <th>Price</th>
                             <th>Delivery Men</th>
                             <th>Booking Status</th>
                             <th>Update</th>
@@ -77,9 +76,9 @@ const MyPercel = () => {
                             <tbody key={booked._id}>
                                 <tr>
                                     <th>{booked?.percelType}</th>
+                                    <th> {booked?.bookingDate} </th>
                                     <th> {booked?.deliveryDate} </th>
-                                    <th> {booked?.deliveryDate} </th>
-                                    <th> { } </th>
+                                    <th> {booked?.price} </th>
                                     <th> { } </th>
                                     <th> { } </th>
                                     <th>

@@ -35,18 +35,20 @@ const Booking = () => {
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
+        const userImage = form.userImage.value;
         const phone = form.phone.value;
         const percelType = form.percelType.value;
         const parcelWeight = kg;
         const receverName = form.receverName.value;
         const receverPhone = form.receverPhone.value;
+        const bookingDate =  new Date().toLocaleDateString('en-GB');
         const deliveryDate = form.deliveryDate.value;
         const deliveryAddress = form.deliveryAddress.value;
         const deliveryAddressLatitude = form.deliveryAddressLatitude.value;
         const deliveryAddressLongitude = form.deliveryAddressLongitude.value;
         const price = form.price.value;
 
-        const bookingData = { name, email, phone, percelType, parcelWeight, receverName, receverPhone, deliveryDate, deliveryAddress, deliveryAddressLatitude, deliveryAddressLongitude, price }
+        const bookingData = { name, email, userImage, phone, percelType, parcelWeight, receverName, receverPhone, bookingDate, deliveryDate, deliveryAddress, deliveryAddressLatitude, deliveryAddressLongitude, price }
 
 
         fetch('http://localhost:5000/booking', {
@@ -88,6 +90,13 @@ const Booking = () => {
                                 <span className="label-text">Email</span>
                             </label>
                             <input type="email" name="email" defaultValue={user?.email} className="input input-bordered" required readOnly />
+                        </div>
+                        {/* User Image */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Your Image URL</span>
+                            </label>
+                            <input type="text" name="userImage" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">

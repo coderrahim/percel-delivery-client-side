@@ -6,9 +6,9 @@ const MyProfile = () => {
     return (
         <div>
 
-            <div className="h-screen dark:bg-gray-700  pt-12">
+            <div className="h-screen  pt-12">
 
-                <div className="max-w-sm mx-auto  dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                <div className="max-w-md mx-auto py-10 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
                     <div className="border-b px-4 pb-6">
                         <div className="text-center my-4">
                             <img className="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
