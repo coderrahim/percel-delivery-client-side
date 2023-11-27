@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import DashboardTitle from "../../../../Components/DashboardTitle";
 import useUser from "../../../../hooks/useUser";
 import Swal from "sweetalert2";
+import useDbUser from "../../../../hooks/useDbUser";
 
 
 const AllUsers = () => {
     const user = useUser()
     const [users, setUsers] = useState([])
     const [booking, setBooking] = useState([])
+    const dbUser = useDbUser()
 
     useEffect(() => {
         fetch('http://localhost:5000/users')
@@ -16,7 +18,7 @@ const AllUsers = () => {
     }, [])
 
 
-    const url = `http://localhost:5000/booking?email=${user?.email}`
+    const url = `http://localhost:5000/booking`
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -24,6 +26,10 @@ const AllUsers = () => {
                 setBooking(data)
             })
     }, [url])
+
+    useEffect(() => {
+        fetch('http://localhost:5000/booking?email=rahim5@gmail.com')
+    } ,[])
 
     const totalPrice = (parseInt(booking[0]?.price));
 
@@ -53,7 +59,7 @@ const AllUsers = () => {
                                 text: `${booking?.name} is Now Admin`,
                                 icon: "success"
                             });
-                            const remaining = users.filter(users => users._id !== id);
+                            const remaining = users.filter(users => users._id !== user);
                             setUsers(remaining)
                         }
                     })
@@ -101,7 +107,7 @@ const AllUsers = () => {
                 <thead>
                     <tr>
                         <th>User’s Name</th>
-                        <th>Phone Number</th>
+                        <th>User’s Email</th>
                         <th>Totall Booked</th>
                         <th>Total Spent</th>
                         <th>Make Delivery Men</th>
@@ -112,15 +118,15 @@ const AllUsers = () => {
                     users.map(users =>
                         <tbody key={users._id}>
                             <tr>
-                                <th>{booking[0]?.name}</th>
-                                <th>{booking[0]?.phone}</th>
+                                <th>{users?.name}</th>
+                                <th>{users?.email}</th>
                                 <th>{booking?.length}</th>
                                 <th>{totalPrice}</th>
                                 <th>
                                     {
                                         users.role === 'delivery' ? 'Delivery Man'
                                         :
-                                        <button onClick={() => handleMakeDelivery(users._id)} className="btn btn-primary btn-sm">Make Delivery</button>
+                                        <button onClick={() => handleMakeDelivery(users._id)} className="btn btn-primary btn-sm">Make Deliver</button>
                                     }
                                 </th>
                                 <th>

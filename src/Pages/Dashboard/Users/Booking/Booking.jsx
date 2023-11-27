@@ -3,11 +3,14 @@ import DashboardTitle from "../../../../Components/DashboardTitle";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useDbUser from "../../../../hooks/useDbUser";
 
 
 const Booking = () => {
     const user = useUser()
     const [kg, setKg] = useState(0)
+    // const [dbUser, setDbUser] = useState([])
+    const dbUser = useDbUser()
     const navigate = useNavigate()
 
     const calculatePrice = () => {
@@ -29,6 +32,11 @@ const Booking = () => {
         }
         return totalPrice;
     }
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/user?email=${user?.email}`)
+    //     .then(res => res.json())
+    //     .then(data => setDbUser(data))
+    // } ,[user?.email])
 
     const handleBookPercel = (e) => {
         e.preventDefault()
@@ -41,7 +49,7 @@ const Booking = () => {
         const parcelWeight = kg;
         const receverName = form.receverName.value;
         const receverPhone = form.receverPhone.value;
-        const bookingDate =  new Date().toLocaleDateString('en-GB');
+        const bookingDate = new Date().toLocaleDateString('en-GB');
         const deliveryDate = form.deliveryDate.value;
         const deliveryAddress = form.deliveryAddress.value;
         const deliveryAddressLatitude = form.deliveryAddressLatitude.value;
@@ -83,7 +91,12 @@ const Booking = () => {
                             <label className="label">
                                 <span className="label-text">Full Name</span>
                             </label>
-                            <input type="name" name="name" defaultValue={user?.displayName} className="input input-bordered" required readOnly />
+                            {
+                                user?.displayName ?
+                                    <input type="name" name="name" defaultValue={user?.displayName} className="input input-bordered" required readOnly />
+                                    :
+                                    <input type="name" name="name" defaultValue={dbUser[0]?.name} className="input input-bordered" required readOnly />
+                            }
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -115,7 +128,7 @@ const Booking = () => {
                                 <span className="label-text">Parcel Weight (kg) </span>
                             </label>
                             <input type="number" name="parcelWeight " className="input input-bordered" required
-                                 min={0}
+                                min={0}
                                 onChange={(e) => setKg(e.target.value)}
                             />
                         </div>

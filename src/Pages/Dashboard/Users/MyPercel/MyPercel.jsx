@@ -80,7 +80,7 @@ const MyPercel = () => {
                                     <th> {booked?.deliveryDate} </th>
                                     <th> {booked?.price} </th>
                                     <th> { } </th>
-                                    <th> { } </th>
+                                    <th> {booked?.status} </th>
                                     <th>
                                         <Link to={`/dashboard/update/${booked._id}`}>
                                             <button className="btn btn-outline btn-primary btn-sm">Update</button>

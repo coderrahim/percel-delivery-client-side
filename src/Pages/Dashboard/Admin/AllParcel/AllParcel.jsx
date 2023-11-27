@@ -10,6 +10,8 @@ const AllParcel = () => {
             .then(data => setAllParcel(data))
     }, [])
 
+    
+
     return (
         <div>
             <DashboardTitle heading={"All "} subheading={"Parcel"} />
@@ -39,7 +41,7 @@ const AllParcel = () => {
                                     <th> {parcel?.bookingDate} </th>
                                     <th> {parcel?.deliveryDate} </th>
                                     <th> {parcel?.price} </th>
-                                    <th> { } </th>
+                                    <th> {parcel?.status} </th>
                                     <th> Set D. Man </th>
                                 </tr>
                             </tbody>

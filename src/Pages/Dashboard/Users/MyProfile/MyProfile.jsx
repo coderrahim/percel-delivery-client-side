@@ -1,8 +1,11 @@
+import useDbUser from "../../../../hooks/useDbUser";
 import useUser from "../../../../hooks/useUser";
 
 
 const MyProfile = () => {
     const user = useUser()
+    const dbUser = useDbUser()
+
     return (
         <div>
 
@@ -11,10 +14,21 @@ const MyProfile = () => {
                 <div className="max-w-md mx-auto py-10 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
                     <div className="border-b px-4 pb-6">
                         <div className="text-center my-4">
-                            <img className="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
+                            {
+                                user?.photoURL ?
+                                <img className="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
                                 src={user?.photoURL} alt="" />
+                                :
+                                <img className="h-32 w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto my-4"
+                                src={dbUser[0]?.photo_url} alt="" />
+                            }
                             <div className="py-2 mb-14">
-                                <h3 className="font-bold text-2xl text-gray-800 dark:text-white mb-1">{user?.displayName}</h3>
+                                {
+                                    user?.displayName ?
+                                    <h3 className="font-bold text-2xl text-gray-800 dark:text-white mb-1">{user?.displayName}</h3>
+                                    :
+                                    <h3 className="font-bold text-2xl text-gray-800 dark:text-white mb-1">{dbUser[0]?.name}</h3>
+                                }
                                 <div className="inline-flex text-gray-700 dark:text-gray-300 items-center">
                                    {user?.email}
                                 </div>

@@ -2,7 +2,7 @@ import CountUp from 'react-countup';
 
 const Statistics = () => {
     return (
-        <div className='flex justify-center gap-5 my-10 flex-wrap'>
+        <div className='flex justify-center gap-5 my-10 flex-wrap bg-base-200 rounded-md py-10'>
             <div className="card w-80 shadow-xl border m-4">
                 <div className="card-body items-center text-center">
                     <h2 className="text-3xl mb-4 font-medium"> Parcel Booked</h2>

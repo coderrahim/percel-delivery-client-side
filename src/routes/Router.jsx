@@ -16,6 +16,7 @@ import UserDashboard from "../Pages/Dashboard/Users/UserDashboard";
 import Delivery from "../Pages/Dashboard/Delivery/Delivery";
 import MyDelivery from "../Pages/Dashboard/Delivery/MyDelivery/MyDelivery";
 import MyReview from "../Pages/Dashboard/Delivery/MyReview/MyReview";
+import PrivateRoute from "./PrivateRoute";
 
   const Router = createBrowserRouter([
     {
@@ -39,7 +40,7 @@ import MyReview from "../Pages/Dashboard/Delivery/MyReview/MyReview";
     },
     {
       path: '/dashboard',
-      element: <Dashboard></Dashboard>,
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
 
       children: ([
         {

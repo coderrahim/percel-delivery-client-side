@@ -6,7 +6,7 @@ import SectionTitle from "../../../Components/SectionTitle";
 
 const Features = () => {
     return (
-        <div>
+        <div className="bg-base-200 py-10 rounded-md">
             <SectionTitle Heading="Our" Subheading="Feature" />
 
             <div className="flex justify-center flex-wrap gap-6 mx-auto">
